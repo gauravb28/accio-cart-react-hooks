@@ -8,9 +8,12 @@ import {
   Grid,
   Chip,
   Button,
+  useTheme,
 } from '@mui/material';
 
 const CartContainer = () => {
+  const theme = useTheme();
+
   const { amount, total, loading, cartItems, clearCart } =
     useContext(CartContext);
 
@@ -23,7 +26,12 @@ const CartContainer = () => {
 
   return (
     <>
-      <Typography variant="h2" gutterBottom align="center">
+      <Typography
+        variant="h2"
+        gutterBottom
+        align="center"
+        style={{ color: theme.palette.secondary.main }}
+      >
         Your Cart
       </Typography>
       {amount === 0 && (
@@ -48,7 +56,12 @@ const CartContainer = () => {
           <Typography variant="h5">Total</Typography>
         </Grid>
         <Grid item>
-          <Chip color="primary" label={total.toFixed(2)} />
+          <Chip
+            label={total.toFixed(2)}
+            sx={{
+              bgcolor: (defaultTheme) => defaultTheme.palette.primary.main,
+            }}
+          />
         </Grid>
       </Grid>
 
